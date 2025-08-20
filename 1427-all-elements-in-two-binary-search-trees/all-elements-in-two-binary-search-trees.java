@@ -14,26 +14,18 @@
  * }
  */
 class Solution {
+    private List<Integer> ans = new ArrayList<>();
     public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
-        List<Integer> ans=new ArrayList<>();
-        List<Integer> ll1=new ArrayList<>();
-        List<Integer> ll2=new ArrayList<>();
-        fun(root1,ll1);
-        fun(root2,ll2);
-        for(int v:ll1){
-            ans.add(v);
-        }
-        for(int v:ll2){
-            ans.add(v);
-        }
+        fun(root1);
+        fun(root2);
         Collections.sort(ans);
         return ans;
 
     }
-    public void fun(TreeNode root,List<Integer>ll){
+    public void fun(TreeNode root){
         if(root == null)return;
-        fun(root.left,ll);
-        ll.add(root.val);
-        fun(root.right,ll);
+        fun(root.left);
+        ans.add(root.val);
+        fun(root.right);
     }
 }
