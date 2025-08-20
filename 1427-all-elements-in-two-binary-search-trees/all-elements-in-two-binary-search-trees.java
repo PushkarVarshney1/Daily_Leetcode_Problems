@@ -18,8 +18,8 @@ class Solution {
         List<Integer> ans=new ArrayList<>();
         List<Integer> ll1=new ArrayList<>();
         List<Integer> ll2=new ArrayList<>();
-        fun1(root1,ll1);
-        fun2(root2,ll2);
+        fun(root1,ll1);
+        fun(root2,ll2);
         for(int v:ll1){
             ans.add(v);
         }
@@ -30,17 +30,10 @@ class Solution {
         return ans;
 
     }
-    public void fun1(TreeNode root,List<Integer>ll1){
+    public void fun(TreeNode root,List<Integer>ll){
         if(root == null)return;
-        fun1(root.left,ll1);
-        ll1.add(root.val);
-        fun1(root.right,ll1);
-    }
-
-    public void fun2(TreeNode root,List<Integer>ll2){
-        if(root == null)return;
-        fun2(root.left,ll2);
-        ll2.add(root.val);
-        fun2(root.right,ll2);
+        fun(root.left,ll);
+        ll.add(root.val);
+        fun(root.right,ll);
     }
 }
