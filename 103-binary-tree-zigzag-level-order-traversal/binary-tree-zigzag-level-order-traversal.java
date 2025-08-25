@@ -19,7 +19,7 @@ class Solution {
         if (root == null) return ans;
         Queue<TreeNode> q=new LinkedList<>();
         q.add(root);
-        int c=0;
+        boolean checker=true;
         while(! q.isEmpty()){
             List<Integer>ll=new ArrayList<>();
             int size=q.size();
@@ -33,15 +33,11 @@ class Solution {
 				    q.add(curr.right);
 			    }
             }
-            if(c % 2 ==0){
-                ans.add(ll);
-            }
-            else{
+            if( !checker )
                 Collections.reverse(ll);
-                ans.add(ll);
-            }
-            c++;
-            
+                
+            checker = !checker;
+            ans.add(ll);    
         }
         return ans;
     }
