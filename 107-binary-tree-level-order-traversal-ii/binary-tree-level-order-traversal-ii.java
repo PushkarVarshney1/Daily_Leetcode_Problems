@@ -32,9 +32,8 @@ class Solution {
 				    q.add(curr.right);
 			    }
             }
-            ans.add(ll);    
+            ans.add(0,ll);    
         }
-        Collections.reverse(ans); // the Main part
         return ans;
     }
 }
