@@ -1,26 +1,26 @@
 class Solution {
     public int change(int amount, int[] coins) {
-        int [][]dp=new int[amount+1][coins.length];
-        for(int []a:dp){
-            Arrays.fill(a,-1);
-        }
-        return fun(coins,amount,0,dp);
+        return funBU(coins,amount);  
     }
-    public int fun(int[]coin,int am,int i,int [][]dp){
-        if(am == 0){
-            return 1;
-        }
-        if(i== coin.length)return 0;
-        if(dp[am][i] != -1){
-            return dp[am][i];
-        }
-        int inc=0 , exc=0;
-        if(i==coin.length)return 0;
-        if(am>=coin[i]){
-            inc=fun(coin,am-coin[i],i,dp);
-        }
-        exc=fun(coin,am,i+1,dp);
-        return dp[am][i]=inc+exc;
-    }
+	// Bottom Up Approach
+	public static int funBU(int[]coins,int amount) {
+		int [][]dp=new int[coins.length+1][amount+1];
+		for(int i=0;i<dp.length;i++) {
+			dp[i][0]=1;
+		}
+		
+		for(int i=1; i<dp.length;i++) {
+			for(int am=1;am<dp[0].length;am++) {
+				int inc=0 , exc=0;
+				if(am>=coins[i-1]){
+		            inc=dp[i][am-coins[i-1]];
+		        }
+		        exc=dp[i-1][am];
+		        dp[i][am]=inc+exc;
+				
+			}
+		}
+		return dp[dp.length-1][dp[0].length-1];
+	}
 
 }
