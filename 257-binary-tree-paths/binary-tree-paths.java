@@ -16,8 +16,7 @@
 class Solution {
     public List<String> binaryTreePaths(TreeNode root) {
         List<String> ans=new ArrayList<>();
-        String s="";
-        fun(root,s,ans);
+        fun(root,"",ans);
         return ans;
     }
     public void fun(TreeNode root,String s,List<String>ans){
