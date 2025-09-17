@@ -1,0 +1,14 @@
+class Solution {
+    public int largestPerimeter(int[] nums) {
+       Arrays.sort(nums);
+        
+        //Start traversing from back , so that we can get the largest value.
+        for(int i = nums.length-1; i>=2; i--){
+            // The sum of the length of the small two sides of a triangle 
+            //    is greater than the length of the third side. 
+           if(nums[i] < nums[i-1] + nums[i-2])
+               return  nums[i] + nums[i-1]+ nums[i-2];   
+        }
+        return 0;
+    }
+}
