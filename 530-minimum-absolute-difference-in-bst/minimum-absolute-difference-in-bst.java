@@ -19,7 +19,6 @@ class Solution {
         fun(root,ll);
         int minDiff = Integer.MAX_VALUE;
         for (int i = 1; i < ll.size(); i++) {
-            System.out.println(ll.get(i));
             minDiff = Math.min(minDiff , ll.get(i) - ll.get(i - 1));
         }
         return minDiff;
