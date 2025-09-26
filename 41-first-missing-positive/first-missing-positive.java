@@ -12,7 +12,7 @@ class Solution {
         for(int i=0;i<n;i++){
             int x=Math.abs(nums[i]);
             x=x-1;
-            if(nums[x]>0)nums[x] *= -1;
+            if(nums[x]>0) nums[x] *= -1;
         }
         for(int i=0;i<n;i++){
             if(nums[i]>0){
@@ -21,13 +21,4 @@ class Solution {
         }
         return n+1;
     }
-    //     Arrays.sort(nums);
-    //     int ans=fun()
-    // }
-    // public void fun(int []nums,int idx){
-    //     if(idx < nums.length){
-    //         return ;
-    //     }
-    // }
-
 }
