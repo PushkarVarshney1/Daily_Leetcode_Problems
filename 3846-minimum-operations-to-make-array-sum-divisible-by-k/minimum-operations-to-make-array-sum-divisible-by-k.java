@@ -1,0 +1,9 @@
+class Solution {
+    public int minOperations(int[] nums, int k) {
+        int s = 0;
+        for(int v:nums){
+            s += v;
+        }
+        return s % k;
+    }
+}
