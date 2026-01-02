@@ -1,22 +1,27 @@
 class Solution {
     public int edgeScore(int[] edges) {
-        long[] arr = new long[edges.length];
-
-        // compute edge arrs
-        for (int i = 0; i < edges.length; i++) {
-            arr[edges[i]] += i;
+        HashMap<Integer,List<Integer>> idx = new HashMap<>();
+        HashMap<Integer,Long> map = new HashMap<>();
+        for(int i=0;i<edges.length;i++){
+            idx.put(edges[i] , new ArrayList<>());
         }
-
-        int ans = 0;
-        long max = arr[0];
-
-        // find node with maximum arr
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i] > max) {
-                max = arr[i];
-                ans = i;
+        for(int i=0; i<edges.length; i++){
+            idx.get(edges[i]).add(i);
+        }
+        long ans = 0; // this takes the max ele
+        Integer[] arr = new Integer[edges.length];
+        for(int key : idx.keySet()){
+            long x = 0;
+            for(int nbrs : idx.get(key))x += nbrs;
+            ans = Math.max(ans , x);
+            map.put(key , x);
+        }
+        int res = Integer.MAX_VALUE; // max's index in map
+        for (int k : map.keySet()) {
+            if (map.get(k) == ans) {
+                res = Math.min(res, k);
             }
         }
-        return ans;
+        return res;
     }
 }
