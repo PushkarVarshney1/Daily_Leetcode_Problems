@@ -1,19 +1,29 @@
 class Solution {
     public int timeRequiredToBuy(int[] tickets, int k) {
+        // Using queue dataStructure but another approach -> TC : O(n) & SC : O(n)
+        Queue<Integer> q = new LinkedList<>();
+        for(int val : tickets){
+            q.add(val);
+        }
         int ans = 0;
-        int target = tickets[k];
 
-        for (int i = 0; i < tickets.length; i++) {
-            if (i <= k) {
-                ans += Math.min(tickets[i], target);
-            } else {
-                ans += Math.min(tickets[i], target - 1);
+        while(true){
+            int r = q.poll();   
+            r--;
+            ans++;
+            // if this was person k
+            if(k == 0){
+                if(r == 0) return ans; // target finished
+                else {
+                    q.add(r);          // target goes back in queue
+                    k = q.size() - 1;  // new position of target
+                }
+            }
+            else {
+                // not target
+                if(r > 0) q.add(r);
+                k--; // target moves one step forward
             }
         }
-        return ans;
     }
 }
-//      Intution :
-
-    // Everyone before or at k buys at most tickets[k] times ,
-    // everyone after k buys at most tickets[k] - 1 times.
