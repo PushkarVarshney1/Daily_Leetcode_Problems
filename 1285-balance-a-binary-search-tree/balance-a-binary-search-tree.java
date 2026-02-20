@@ -14,6 +14,11 @@
  * }
  */
 class Solution {
+    public TreeNode balanceBST(TreeNode root) {
+        List<Integer> vals = new ArrayList<>();
+        inorder(root, vals);
+        return build(vals, 0, vals.size() - 1);
+    }
     public void inorder(TreeNode node, List<Integer> vals) {
         if (node == null) return;
         inorder(node.left, vals);
@@ -28,9 +33,5 @@ class Solution {
         node.right = build(vals, mid + 1, r);
         return node;
     }
-    public TreeNode balanceBST(TreeNode root) {
-        List<Integer> vals = new ArrayList<>();
-        inorder(root, vals);
-        return build(vals, 0, vals.size() - 1);
-    }
+    
 }
