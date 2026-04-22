@@ -1,12 +1,18 @@
 class Solution {
     public int minSwaps(String s) {
-        int c = 0;
+        //  Note : Open brackets == Closing brackets
+        //  let imbalance closig brackets = c
+        //  min swaps = (c + 1)/2
+        int c = 0 , maxImb = 0;
         for(char ch : s.toCharArray()){
-            if(ch == '['){
+            if(ch == ']'){
                 c++;
             }
-            else if(ch == ']' && c > 0)c--;
+            else if(ch == '['){
+                c--;
+            }
+            if(c > maxImb)maxImb = c;
         }
-        return (c+1)/2;
+        return (maxImb + 1)/ 2;
     }
 }
