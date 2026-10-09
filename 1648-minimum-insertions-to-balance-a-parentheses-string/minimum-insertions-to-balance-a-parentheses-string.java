@@ -1,0 +1,21 @@
+class Solution {
+    public int minInsertions(String s) {
+        int open = 0;
+        int n = s.length();
+        int ans = 0;
+        for(int i=0; i<n; i++){
+            if(s.charAt(i) == '(')open++;
+            else{
+                if(open == 0) ans++;
+                else open--;
+
+                if(i + 1 < s.length() && s.charAt(i + 1) == ')') {
+                    i++;
+                } else {
+                    ans++;
+                }
+            }
+        }
+        return ans + 2 * open;
+    }
+}
